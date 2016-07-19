@@ -1,0 +1,74 @@
+@CHARSET "UTF-8";
+.sea_dialog{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 99999;
+	display: none;
+}
+.sea_dialog_title{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height: 35px;
+	line-height: 35px;
+	padding: 0 15px;
+	font-weight: bold;
+	vertical-align:middle;
+	color:#777777;
+    background-color: #efefef;
+  	border:1px solid  #CDCDCD;
+}
+.sea_dialog_title_icon{
+	height: 35px;
+	line-height: 35px;
+	padding-right:5px;
+}
+.sea_dialog_title_btn{
+	margin-left: 20px;
+	height: 35px;
+	line-height: 35px;
+	float: right;
+	cursor: pointer;
+	display: inline-block;
+}
+.sea_dialog_title_btn:hover{
+	color: #f5694b;
+}
+.sea_dialog_content{
+	position:absolute;
+	top:35px;
+	left:0;
+	width:100%;
+	background:#ffffff;	
+	text-align:center;
+	vertical-aling:middle;
+	overflow:auto;
+}
+.sea_dialog_buttonGroup{
+	position:absolute;
+	bottom:0;
+	left:0;
+	height:50px;
+	line-height:50px;
+	width:100%;
+    background-color: #efefef;
+  	border:1px solid  #CDCDCD;
+	text-align: center;
+} 
+.sea_dialog_mask{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99998;
+	opacity: .3;
+	filter: alpha(opacity=30);
+	background: #000;
+	display: none;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
