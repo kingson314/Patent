@@ -3,7 +3,7 @@
   type="WEB"
   name="Patent"
   id="myeclipse.1386415341219"
-  context-root="/Repository "
+  context-root="/Patent "
   j2ee-spec="6.0"
   archive="Patent.war">
   <attributes>
