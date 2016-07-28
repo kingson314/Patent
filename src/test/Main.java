@@ -9,7 +9,6 @@ public class Main {
 		// testHtmlPage();
 		exescript();
 	}
-
 	public static void testHtmlPage() throws Exception {
 		// 新建webclient对象，相当于浏览器
 		final WebClient WebClient = new WebClient();
@@ -28,11 +27,9 @@ public class Main {
 		HtmlPage page = webClient.getPage("http://zhixing.court.gov.cn/search");
 		System.out.println(page.asXml());
 		System.out.println("---------------------------------");
-		ScriptResult result = page
-				.executeJavaScript("document.getElementById(\"pname\").value=\"陈旭光\";$('#searchForm').submit();");
+		ScriptResult result = page.executeJavaScript("document.getElementById(\"pname\").value=\"陈旭光\";$('#searchForm').submit();");
 		HtmlPage page2 = (HtmlPage) result.getNewPage();
-		HtmlPage framepage = (HtmlPage) page2.getFrameByName("contentFrame")
-				.getEnclosedPage();
+		HtmlPage framepage = (HtmlPage) page2.getFrameByName("contentFrame").getEnclosedPage();
 		System.out.println(framepage.asXml());
 	}
 

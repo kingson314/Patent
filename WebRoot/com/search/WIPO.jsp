@@ -103,7 +103,7 @@
 								专利申请号:
 							</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="sqh" value='14853182'placeholder="请输入申请号">
+								<input type="text" class="form-control" id="sqh" value='05465390'placeholder="请输入申请号">
 							</div>
 							<div class="col-sm-2 text-center">
 								<input id="query" type='button' class="form-control btn btn-default btn-primary"value='查&nbsp;询'/>
