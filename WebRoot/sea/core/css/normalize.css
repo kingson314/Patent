@@ -53,7 +53,7 @@ template {
   display: none;
 }
 a {
-  color: #337ab7;
+  color: #555;
   background-color: transparent;
   text-decoration: none;
    cursor: pointer;
@@ -1266,12 +1266,12 @@ a.bg-danger:focus {
 ul,
 ol {
   margin: 0;
+  padding:0;
 }
-ul ul,
-ol ul,
-ul ol,
-ol ol {
-  margin-bottom: 0;
+li{
+	list-style-type:none;	
+	margin: 0;
+  	padding:0;
 }
 dl {
   margin-top: 0;
@@ -1390,7 +1390,8 @@ legend {
 label {
   display: inline-block;
   max-width: 100%;
-  font-weight: bold;
+  color:#555;
+  font-weight:600;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;

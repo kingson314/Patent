@@ -46,7 +46,10 @@ define(function(require, exports, module) {
 			//				click: null,
 			//				change: null
 			//			}
-		}]]
+		}]],
+		after:function(){
+			
+		}
 	};
 	/** * 模块私有方法 ** */
 	var self = {
@@ -119,14 +122,13 @@ define(function(require, exports, module) {
 						break;
 					case "color":
 						break;
-						
 					case "date":		
 					case "time":	
 					case "datetime":
-						break;						
+						break;				
 					case "hidden":
-						var hidden = $("<input type='hidden' />").append(me.formLayout);
 						item._Component=require("Hidden").create(item).hidden;
+						me.formLayout.append(item._Component);
 						break;
 					case "img":
 					case "imgage":
@@ -153,8 +155,16 @@ define(function(require, exports, module) {
 						var tdField = $("<div></div>").addClass(ClassName + "_td").css("width", colWidth * (1 -me.configs. labelWidthPercent) + '%').appendTo(tr);
 						self.appendFields(tdField,item._Component.radioGroup);
 						break;
-					case "combox":
 					case "select":
+						item._Component=require("Select").create(item);
+						if(item._Component.label){
+							var tdLabel = $("<div></div>").addClass(ClassName + "_td").css("width", colWidth * me.configs.labelWidthPercent + '%').appendTo(tr);
+							self.appendLabel(tdLabel,item._Component.label );
+						}else{
+							me.configs. labelWidthPercent=0;
+						}
+						var tdField = $("<div></div>").addClass(ClassName + "_td").css("width", colWidth * (1 -me.configs. labelWidthPercent) + '%').appendTo(tr);
+						self.appendFields(tdField,item._Component.select);
 						break;
 					case "textarea":
 						item._Component=require("Textarea").create(item);
@@ -212,10 +222,24 @@ define(function(require, exports, module) {
 	var FormLayout = function(configs) {
 		this.configs = $.extend(true, {},defaults, configs);
 		self.init(this);
+		this.configs.after();
 	};
 
 	// 类公共方法
 	FormLayout.prototype = {
+		get:function(id){
+			var rowCount=this.configs.items.length;
+			for (var rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+				var rowItems = this.configs.items[rowIndex];
+				var colCount= rowItems.length;
+				for (var colIndex = 0; colIndex <colCount; colIndex++) {
+					var item = rowItems[colIndex];
+					if(item.id==id){
+						return item._Component;
+					}
+				}
+			}
+		},
 		//检查函数
 		check:function(){
 			var rowCount=this.configs.items.length;
@@ -264,6 +288,7 @@ define(function(require, exports, module) {
 								case "radiogroup":
 								case "textarea":
 								case "textfield":
+								case "select":
 									item._Component.val(data[item.id]);
 									break;
 								default:
@@ -294,6 +319,7 @@ define(function(require, exports, module) {
 								case "radiogroup":
 								case "textarea":
 								case "textfield":
+								case "select":
 									data[item.id]=item._Component.val();
 									break;
 								default:
@@ -327,6 +353,7 @@ define(function(require, exports, module) {
 							case "radiogroup":
 							case "textarea":
 							case "textfield":
+							case "select":
 								item._Component.clear();
 								break;
 							default:

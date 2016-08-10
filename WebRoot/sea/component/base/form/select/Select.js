@@ -31,6 +31,7 @@ define(function(require, exports, module) {
 		this.select.append("<option value=''>"+this._lang["please.select"]+"</option>");
 		if(this.configs.url){
 			Ajax=require("Ajax");
+			var me=this;
 			$.ajax({
 				type:"get",
 				url:Ajax.getUrl(this.configs.url),
@@ -38,10 +39,10 @@ define(function(require, exports, module) {
 				cache:false,
 				dataType:"json",
 				success:function(result,status,xhr){
-					var len=result.length;
+					var len=result.data.length;
 					for(var i=0;i<len;i++){
-						var item=result[i];
-						this.select.append("<option value='"+item.value+"'>"+item.text+"</option>");
+						var item=result.data[i];
+						me.select.append("<option value='"+item.value+"'>"+item.text+"</option>");
 					};
 				}
 			}); 

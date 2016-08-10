@@ -32,19 +32,19 @@
 									.append('<div class="row"><div class="col-md-2 text-right">授权号</div><div class="col-md-2">'
 									+(rs.grantNumber||"")+'</div><div class="col-md-2 text-right">授权日期</div><div class="col-md-2">'
 									+(rs.grantDate||"")+'</div></div>')
-									.append('<div class="row"><div class="col-md-2 text-right">公布种类</div><div class="col-md-2">'
+									.append('<div class="row"><div class="col-md-2 text-right">公布种类</div><div class="col-md-6">'
 											+(rs.publicationKind||"")+'</div></div>')
-									.append('<div class="row"><div class="col-md-2 text-right">IPC</div><div class="col-md-2">'
+									.append('<div class="row"><div class="col-md-2 text-right">IPC</div><div class="col-md-6">'
 											+(rs.ipc||"")+'</div></div>')														
-									.append('<div class="row"><div class="col-md-2 text-right">PCT参考号</div><div class="col-md-2">'
+									.append('<div class="row"><div class="col-md-2 text-right">PCT参考号</div><div class="col-md-6">'
 											+(rs.pctreference||"")+'</div></div>')	
-									.append('<div class="row"><div class="col-md-2 text-right">申请人</div><div class="col-md-2">'
+									.append('<div class="row"><div class="col-md-2 text-right">申请人</div><div class="col-md-6">'
 											+(rs.applicants||"")+'</div></div>')	
-									.append('<div class="row"><div class="col-md-2 text-right">发明人</div><div class="col-md-2">'
+									.append('<div class="row"><div class="col-md-2 text-right">发明人</div><div class="col-md-6">'
 											+(rs.inventors||"")+'</div></div>')	
-									.append('<div class="row"><div class="col-md-2 text-right">标题</div><div class="col-md-2">'
+									.append('<div class="row"><div class="col-md-2 text-right">标题</div><div class="col-md-6">'
 											+(rs.title||"")+'</div></div>')	
-									.append('<div class="row"><div class="col-md-2 text-right">摘要</div><div class="col-md-2">'
+									.append('<div class="row"><div class="col-md-2 text-right">摘要</div><div class="col-md-6">'
 											+(rs.memo||"")+'</div></div>');
 						}
 					});
