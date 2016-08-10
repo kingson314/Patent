@@ -76,7 +76,6 @@
 								click: function() {
 								Ajax.post("manager/listCommon", {},
 										function(rs) {
-										debugger;
 										var html=[];
 										for(var i=0;i<rs.data.length;i++){
 											html.push("<tr><td width='15%'>"+rs.data[i]["domain"]+"</td><td width='15%'>"+rs.data[i]["num"]
@@ -86,6 +85,11 @@
 										Ajax.post("manager/createCommonPage", {"html":html.join("")},
 												function(rs) {
 												Dialog.alert({
+													confirmValue: "‘§¿¿",
+													confirm: function(){
+														window.open(rs.msg,'_blank')		
+														return true;
+													}, 
 													content: rs.msg
 												});
 											});

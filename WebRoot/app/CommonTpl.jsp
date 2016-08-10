@@ -7,7 +7,7 @@
 		<meta http-equiv='expires' content='0' />
 		<meta name="viewport"
 			content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<title>Repository</title>
+		<title>热门专利销售清单</title>
 		<%@ include file="../../../sea/Session.jsp"%>
 		<script>
 			$(document).ready(function() {
@@ -32,11 +32,22 @@
 			th{
 				text-align:center;
 				background-color:#5cb85c;
+				color:#fff;
+			}
+			.title{
+				text-align:center;
+				font-weight:bold;
+				font-size:24px;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
+			<div class="row">
+				<div class="title col-md-12">
+					热门专利销售清单
+				</div>
+			</div>	
 			<div class="row">
 				<div class="col-md-12">
 				<table id="queryTable" class="table table-bordered">
@@ -57,12 +68,20 @@
 			</div>
 			
 			<div class="row">
-				<div class="col-md-12" id="monitorTip">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12" id="monitorRs">
-				</div>
+				<div class="col-md-2"></div>
+				<div class="col-md-4 footer_contactUs">
+                    <h4>联系方式</h4>
+                    <p>
+                       	地址：广东省珠海市横琴金融产业服务基地18号楼B区
+                        <br> 邮政编码：519031
+                        <br/> 电话:400-806-3777
+                        <br/> 传真：0756-8843326
+                        <br/> 七弦琴官方微信号：qixianqinipr
+                    </p>
+                </div>
+                <div class="col-md-6">
+                	<img style="height:138px;width:150px;"src="<%=basePath%>app/images/code.jpg"/>
+                </div>
 			</div>
 		</div>
 	</body>
