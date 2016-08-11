@@ -39,6 +39,9 @@
 				font-weight:bold;
 				font-size:24px;
 			}
+			#queryTable tr:nth-child(even) td {
+				background-color:#d9edf7;
+			}
 		</style>
 	</head>
 	<body>
@@ -79,10 +82,12 @@
                         <br/> ∆ﬂœ“«ŸπŸ∑ΩŒ¢–≈∫≈£∫qixianqinipr
                     </p>
                 </div>
-                <div class="col-md-6">
-                	<img style="height:138px;width:150px;"src="<%=basePath%>app/images/code.jpg"/>
-                </div>
-			</div>
+                <div class="col-xs-6 col-md-3">
+				    <a style="height:145px;width:140px;" href="#" class="thumbnail">
+				      <img  style="height:138px;width:140px;"src="<%=basePath%>app/images/code.jpg"" alt="...">
+				    </a>
+				  </div>
+               </div>
 		</div>
 	</body>
 </html>
