@@ -6,10 +6,14 @@
 		<style>
 		</style>
 		<script>
-			var Title="普通专利配置";
+			var Title="授权专利";
+			var recType="<%=request.getParameter("recType")%>";	
 			$(document).ready(function() {
 				seajs.use(["BorderLayout", "FormLayout", "ViewLayout", "Dialog", "Grid", "Toolbar", "Ajax"],
 					function(BorderLayout, FormLayout, ViewLayout, Dialog, Grid, Toolbar, Ajax) {
+						if(recType==1){
+							Title="授权未下证专利";
+						}
 						/*** 工具栏 ***/
 						var cfgToolbar = {
 							items: [{
@@ -37,7 +41,7 @@
 										});
 										return false;
 									} else {
-										Ajax.post("manager/getCommon", {id:selected[0]},
+										Ajax.post("common/getCommon", {id:selected[0]},
 											function(rs) {
 												formEdit(rs.data);
 											});
@@ -57,7 +61,7 @@
 										Dialog.confirm({
 											content: '是否删除?',
 											confirm: function() {
-												Ajax.post("manager/deleteCommon", {ids:selected.join(",")},
+												Ajax.post("common/deleteCommon", {ids:selected.join(",")},
 													function(rs) {
 														$(".grid").Grid("reload", {});
 													});
@@ -74,26 +78,17 @@
 								id:"btnRefresh",icon: "glyphicon glyphicon-ok-sign",
 								value: "创建页面",
 								click: function() {
-								Ajax.post("manager/listCommon", {},
-										function(rs) {
-										var html=[];
-										for(var i=0;i<rs.data.length;i++){
-											html.push("<tr><td width='15%'>"+rs.data[i]["domain"]+"</td><td width='15%'>"+rs.data[i]["num"]
-											+"</td><td width='25%'>"+rs.data[i]["name"]+"</td><td width='15%'>"+rs.data[i]["status"]
-											+"</td><td width='30%'>"+rs.data[i]["memo"]+"</td></tr>");
-										}
-										Ajax.post("manager/createCommonPage", {"html":html.join("")},
-												function(rs) {
-												Dialog.alert({
-													confirmValue: "预览",
-													confirm: function(){
-														window.open(rs.msg,'_blank')		
-														return true;
-													}, 
-													content: rs.msg
-												});
+									Ajax.post("common/createPage", {"recType":recType},
+											function(rs) {
+											Dialog.alert({
+												confirmValue: "预览",
+												confirm: function(){
+													window.open(rs.msg,'_blank')		
+													return true;
+												}, 
+												content: rs.msg
 											});
-									},false);
+										});
 									return false;
 								}
 							}]
@@ -112,11 +107,16 @@
 									[{id:"domain",label:"领域",type:"textfield",len:"",isNull:true}],
 									[{id:"num",label:"申请号",type:"textfield",len:"",isNull:true}],
 									[{id:"name",label:"专利名称",type:"textfield",len:"",isNull:true}],
-									[{id:"status",label:"案件状态",type:"textfield",len:"",isNull:true}],
-									[{id:"memo",label:"说明",type:"textarea",css:{"width":"100%"},len:"",isNull:true}],
-									[{id:"ord",label:"排序号",type:"textfield",value:"0",len:"",isNull:true}]
+									[{id:"type",label:"专利类型",type:"textfield",len:"",isNull:true}],
+									[{id:"status",label:"法律状态",type:"textfield",len:"",isNull:true}],
+									[{id:"pdate",label:"授权公告日",type:"textfield",isNull:true}],
+									[{id:"ord",label:"排序号",type:"textfield",value:"0",len:"",isNull:true}],
+									[{id:"recType",label:"记录类型",type:"textfield",value:recType,len:"",isNull:true}]
 								]
 							};
+							if(recType==1){
+								cfgForm.items[6].label="办登截止日";
+							}
 							form = FormLayout.create(cfgForm);
 							if(formVal){
 								form.val(formVal);	
@@ -130,7 +130,7 @@
 										return false;
 									}
 									var vals = form.val();
-									Ajax.post("manager/svaeCommon", vals,
+									Ajax.post("common/svaeCommon", vals,
 										function(rs) {
 										$(".grid").Grid("reload", {});
 									});
@@ -153,32 +153,37 @@
 							}
 						});
 						/*** 查询列表 ***/
-						$(".grid").Grid({
-							columns: [
-							{
-							align: "center",
-							name: "id",
-							label: "ID",
-							width: "30",
-							format: {
-								type: "checkbox"
-							}
-							},
-							{name:"domain",label:"领域",width:150,align:"center"},
-							{name:"num",label:"申请号",width:200,align:"center"},
-							{name:"name",label:"专利名称",width:250,align:"center"},
-							{name:"status",label:"案件状态",width:200,align:"center"},
-							{name:"memo",label:"说明",width:300,align:"center"},
-							{name:"ord",label:"排序号",width:50,align:"center"},
-							],
-							ds: {
-								url: "manager/listCommon"
-							},
-							params:{
-							},	
-							pageSizes: [10, 20, 30, 40,50,100]
-						});
-
+						var cfgGrid={
+								columns: [
+											{
+											align: "center",
+											name: "id",
+											label: "ID",
+											width: "30",
+											format: {
+												type: "checkbox"
+											}
+											},
+											{name:"domain",label:"领域",width:120,align:"center"},
+											{name:"num",label:"申请号",width:200,align:"center"},
+											{name:"name",label:"专利名称",width:250,align:"center"},
+											{name:"type",label:"专利类型",width:120,align:"center"},
+											{name:"status",label:"法律状态",width:120,align:"center"},
+											{name:"pdate",label:"授权公告日",width:120,align:"center"},
+											{name:"ord",label:"排序号",width:50,align:"center"},
+										],
+										ds: {
+											url: "common/listCommon"
+										},
+										params:{
+											"recType":recType
+										},	
+										pageSizes: [10, 20, 30, 40,50]
+									};										
+						if(recType==1){
+							cfgGrid.columns[6].label="办登截止日";
+						}
+						$(".grid").Grid(cfgGrid);
 					});
 			});
 			

@@ -38,7 +38,7 @@
 				<strong class=" text-primary">横琴知识产权交易中心</strong>
 			</h2>
 			<h3 style="display: inline-block;"><strong class=" text-info">——</strong></h3>
-			<h3 style="display: inline-block;"><strong class=" text-danger">专利销售管理平台</strong></h3>
+			<h3 style="display: inline-block;"><strong class=" text-danger">专利信息配置平台</strong></h3>
 		</div>
 	</div>
 </div>

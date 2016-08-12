@@ -7,27 +7,8 @@
 		<meta http-equiv='expires' content='0' />
 		<meta name="viewport"
 			content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<title>热门专利销售清单</title>
+		<title><%-- dyn Title --%></title>
 		<%@ include file="../../../sea/Session.jsp"%>
-		<script>
-			$(document).ready(function() {
-				$("#btnQuery").click(function(){
-				});
-				$("#btnAdd").click(function(){
-					var newRow=3;
-					for(var i=0;i<newRow;i++){
-						$("table tbody").append("<tr>"
-				          +"<td width='30%'><input type='text' class='form-control' name='sqh' placeholder='请输入申请号'></td>"
-				          +"<td width='20%'></td>"
-				          +"<td width='20%'></td>"
-				          +"<td width='20%'></td>"
-				          +"</tr>");
-					}
-					var h = document.documentElement.scrollHeight || document.body.scrollHeight;
-					window.scrollTo(h,h);
-				});
-			});
-		</script>
 		<style>
 			th{
 				text-align:center;
@@ -48,7 +29,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="title col-md-12">
-					热门专利销售清单
+					<%-- dyn Title --%>
 				</div>
 			</div>	
 			<div class="row">
@@ -59,8 +40,9 @@
 		        	  <th>领域</th>
 			          <th>申请号</th>
 			          <th>专利名称</th>
-			          <th>案件状态</th>
-			          <th>说明</th>
+			          <th>专利类型</th>
+			          <th>法律状态</th>
+			          <th><%-- dyn pdateTitle --%></th>
 			        </tr>
 			      </thead>
 			      <tbody>
@@ -83,11 +65,9 @@
                     </p>
                 </div>
                 <div class="col-xs-6 col-md-3">
-				    <a style="height:145px;width:140px;" href="#" class="thumbnail">
-				      <img  style="height:138px;width:140px;"src="<%=basePath%>app/images/code.jpg"" alt="...">
-				    </a>
-				  </div>
-               </div>
+			      <img  style="height:138px;width:140px;"src="<%=basePath%>app/images/code.jpg"" alt="...">
+		  		</div>
+            </div>
 		</div>
 	</body>
 </html>

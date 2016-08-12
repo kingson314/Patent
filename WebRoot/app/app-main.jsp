@@ -13,11 +13,9 @@
 		function navClick(obj){
 			$(obj).parent().siblings().removeClass("active");
 			$(obj).parent().addClass("active");
-			var pageName=$(obj).html();
-			if(pageName.indexOf("(")>0){
-				pageName=pageName.substring(pageName.indexOf("(")+1,pageName.indexOf(")"));
-			}
-			$("#mainframe").attr("src","<%=basePath%>app/"+pageName+".jsp");
+			var pageName=$(obj).attr("title");
+			var recType=$(obj).attr("recType");
+			$("#mainframe").attr("src","<%=basePath%>app/"+pageName+".jsp?recType="+recType);
 		}
 		$(function(){
 			var hW=$(window).height();
@@ -25,7 +23,7 @@
 			var hHeader=$(".header").height();
 			var hNav=$(".navbar-inverse").height();
 			$("#mainframe").height(hW-hHeaderTool-hHeader-hNav-30);
-			$("#mainframe").attr("src","<%=basePath%>app/Common.jsp");
+			$("#mainframe").attr("src","<%=basePath%>app/Common.jsp?recType=0");
 		});
 		</script>
 		<style type="text/css">
